@@ -1,7 +1,7 @@
 # Hundred Prisoners Riddle
 This riddle is well described on: [wiki](https://en.wikipedia.org/wiki/100_prisoners_problem). To summarize, 100 prisoners can get out of prison, if they all go into a room and are able to open a box which has a number on it, and a slip inside it w/ the number of the prisoner. If even one prisoner fails to do so, they all get executed. Every prisoner can open upto 50 boxes on his/her turn.
 
-I have to give credit to Veritasium's [video](https://www.youtube.com/watch?v=iSNsgj1OCLA) which prompted great interest from my kids into calculating the probability of the boxes, which is the reason I created this program.
+I have to give credit to Veritasium's [video](https://www.youtube.com/watch?v=iSNsgj1OCLA) which prompted great interest from my kids into calculating the probability of the box loops, which is the reason I created this program.
 
 The problem here is to figure a strategy which will maximize their chances of surviving. It is understood that they can never be 100% successful.
 
