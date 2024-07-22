@@ -1,0 +1,28 @@
+plugins {
+  	id 'java'
+	id 'application'
+}
+
+group 'net.fryol' 
+version '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.jgrapht:jgrapht-core:1.5.1'
+}
+
+application {
+  mainClass = 'net.fryol.jtoys.hprisoners.riddle.Riddle'
+}
+
+task runWithInput(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'net.fryol.jtoys.hprisoners.riddle.Riddle`'
+    standardInput = System.in
+	
+	// Add command-line arguments here
+    args = project.hasProperty('appArgs') ? project.appArgs.split(',') : []
+}
