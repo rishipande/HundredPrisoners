@@ -32,7 +32,7 @@ public class Riddle {
 		experimentList = runExperiment(experimentSize, numBoxes, loopsAllowed);
 
 		experimentList.forEach(experiment -> {
-			if(experiment.getStatus()) {
+			if(Boolean.TRUE.equals(experiment.getStatus())) {
 				experimentResults.put(SUCCESS, experimentResults.get(SUCCESS) + 1);
 			} else {
 				experimentResults.put(FAILURE, experimentResults.get(FAILURE) + 1);

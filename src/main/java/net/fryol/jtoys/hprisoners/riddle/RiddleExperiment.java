@@ -1,10 +1,10 @@
 package net.fryol.jtoys.hprisoners.riddle;
 
 public class RiddleExperiment {
-	int run;
-	int largestLoop;
-	String resultString;
-	Boolean result;
+	private int run;
+	private int largestLoop;
+	private String resultString;
+	private Boolean result;
 
 	public RiddleExperiment(int run, int totalLoops, int loopsAllowed) {
 		this.setRun(run);

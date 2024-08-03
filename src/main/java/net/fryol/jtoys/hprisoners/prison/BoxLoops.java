@@ -54,6 +54,8 @@ public class BoxLoops {
 
                     // avoid creating a loop from the same vertex to itself
                     // resolving: java.lang.IllegalArgumentException: loops not allowed
+                    // https://jgrapht.org/guide/UserOverview#graph-structures has more 
+                    // info on which of these allow self-loops
                     if(currentBox.getBoxIndex() == currentBox.getSlipIndex()) {
                         this.boxLoop.addVertex(currentBox);
                         break;
@@ -119,7 +121,7 @@ public class BoxLoops {
             loopString.append("Loop: " + increment[0] + " | Size: " + vertices.size());
             loopString.append(lineSeparator);
 
-            if(edges.size() > 0) {
+            if(!edges.isEmpty()) {
                 for (DefaultEdge edge : edges) {
                     Box source = myBoxLoop.getEdgeSource(edge);
                     Box target = myBoxLoop.getEdgeTarget(edge);

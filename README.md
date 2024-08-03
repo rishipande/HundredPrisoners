@@ -54,16 +54,16 @@ This project is packaged in `net.fryol.jtoys.hprisoners.prison` and `net.fryol.j
  
  * **HundredPrisoners/build.gradle**
 
-   This is the build file, carefull crafted to import the jgrapht (SimpleGraph) dependency, and to be able to issue these commands:
+   This is the build file, carefully crafted to import the jgrapht (SimpleGraph) dependency, and to be able to issue these commands:
    * `./gradlew clean`
    * `./gradlew build`
    * `./gradlew run`
 
- * *HundredPrisoners/src/main/java/net/fryol/jtoys/hprisoners/***prison**
+ * *HundredPrisoners/src/main/java/net/fryol/jtoys/hprisoners/* **prison**
  
    The `prison` package has four classes: `Box`, `BoxLoops`, `PrisonFloor` and `Slip`. Slips are inside Boxes, Boxes are on PrisonFloor, and BoxLoops are made when a prisoner goes from Box to Box.
 
- * *HundredPrisoners/src/main/java/net/fryol/jtoys/hprisoners/***riddle**
+ * *HundredPrisoners/src/main/java/net/fryol/jtoys/hprisoners/* **riddle**
  
    The `riddle` package has two classes: `Riddle` and `RiddleExperiment`. **`Riddle`** is the main class for this project, and is the **entry point.** `RiddleExperiment` is a convenience class that records data about each run (experiment). See the **Experiment** section above.
 
