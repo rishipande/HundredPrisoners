@@ -8,7 +8,7 @@ class Box {
 	Box(int boxN) {
 		this.boxNumber = boxN;
 	}
-
+	
 	public void setSlip(Slip mySlip) {
 		this.slip = mySlip;
 	}

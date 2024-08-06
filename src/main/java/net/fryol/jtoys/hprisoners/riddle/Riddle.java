@@ -14,9 +14,12 @@ public class Riddle {
 	public static void main(String[] args) {
 		double successPercent;
 
-		HashMap<String, Integer> experimentResults = new HashMap<>();
-		experimentResults.put(SUCCESS, 0);
-		experimentResults.put(FAILURE, 0);
+		/**
+		 * experimentResults: this is basically a counter for two "key" strings: Success
+		 * and Failure, and the value associated for each of them gets appended for every
+		 * encounter of Success or Failure from a RiddleExperiment.getResult()
+		 */
+		HashMap<String, Integer> experimentResults;
 
 		// this also means, numPrisoners
 		int numBoxes = 100;
@@ -31,25 +34,35 @@ public class Riddle {
 
 		experimentList = runExperiment(experimentSize, numBoxes, loopsAllowed);
 
-		experimentList.forEach(experiment -> {
+		experimentResults = calcExperimentResults(experimentList);
+
+		successPercent = calcSuccessPercent(experimentResults);
+
+		System.out.println("---------------");
+		System.out.println("Total Success %age: " + successPercent);
+		System.out.println("---------------");
+	}
+
+	protected static double calcSuccessPercent(HashMap<String, Integer> experimentResults) {
+		return (double) experimentResults.get(SUCCESS) / (experimentResults.get(FAILURE) + experimentResults.get(FAILURE)) * 100;
+	}
+
+	protected static HashMap<String, Integer> calcExperimentResults(List<RiddleExperiment> experimentList) {
+		HashMap<String, Integer> experimentResults = new HashMap<>();
+		experimentResults.put(SUCCESS, 0);
+		experimentResults.put(FAILURE, 0);
+
+		for(RiddleExperiment experiment : experimentList) {
 			if(Boolean.TRUE.equals(experiment.getStatus())) {
 				experimentResults.put(SUCCESS, experimentResults.get(SUCCESS) + 1);
 			} else {
 				experimentResults.put(FAILURE, experimentResults.get(FAILURE) + 1);
 			}
-		});
-
-		successPercent = (double) experimentResults.get(SUCCESS) / (experimentResults.get(FAILURE) + experimentResults.get(FAILURE)) * 100;
-
-		System.out.println("---------------");
-		System.out.println("Total Success %age: " + successPercent);
-		System.out.println("---------------");
-		
-		//System.out.println(prisonFlr.toString());
-		//System.out.println(riddleLoops.toString());
+		}
+		return experimentResults;
 	}
 
-	private static List<RiddleExperiment> runExperiment(int experimentSize, int numBoxes, int loopsAllowed) {
+	protected static List<RiddleExperiment> runExperiment(int experimentSize, int numBoxes, int loopsAllowed) {
 		List<RiddleExperiment> experiments = new ArrayList<>();
 
 		// running the experiment experimentSize times
@@ -58,11 +71,11 @@ public class Riddle {
 			BoxLoops riddleLoops = new BoxLoops(prisonFlr);
 			RiddleExperiment experiment;
 
-			experiment = new RiddleExperiment(i+1, riddleLoops.largestLoop(), loopsAllowed);
+			experiment = new RiddleExperiment(i+1, riddleLoops.getLargestLoop(), loopsAllowed);
 
 			experiments.add(experiment);
 			
-			System.out.println("Run " + experiment.getRun() + " | Result: " + experiment.getResult() + " | Largest loop: " + experiment.getLargestLoop());
+			System.out.println("Run " + experiment.getExperimentSize() + " | Result: " + experiment.getResult() + " | Largest loop: " + experiment.getLargestLoop());
 		}
 
 		return experiments;

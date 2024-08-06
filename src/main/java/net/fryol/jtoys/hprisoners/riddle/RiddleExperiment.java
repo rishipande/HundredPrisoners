@@ -1,14 +1,14 @@
 package net.fryol.jtoys.hprisoners.riddle;
 
 public class RiddleExperiment {
-	private int run;
+	private int experimentSize;
 	private int largestLoop;
 	private String resultString;
 	private Boolean result;
 
-	public RiddleExperiment(int run, int totalLoops, int loopsAllowed) {
-		this.setRun(run);
-		this.setLargestLoop(totalLoops);
+	public RiddleExperiment(int experimentSize, int numBoxes, int loopsAllowed) {
+		this.setExperimentSize(experimentSize);
+		this.setLargestLoop(numBoxes);
 
 		if(this.getLargestLoop() > loopsAllowed) {
 			this.setResult("DEAD");
@@ -17,8 +17,8 @@ public class RiddleExperiment {
 		}
 	}
 	
-	public void setRun(int rn) {
-		this.run = rn;
+	public void setExperimentSize(int es) {
+		this.experimentSize = es;
 	}
 
 	public void setLargestLoop(int ll) {
@@ -34,8 +34,8 @@ public class RiddleExperiment {
 		}
 	}
 
-	public int getRun() {
-		return run;
+	public int getExperimentSize() {
+		return experimentSize;
 	}
 
 	public int getLargestLoop() {

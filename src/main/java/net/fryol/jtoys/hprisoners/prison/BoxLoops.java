@@ -21,6 +21,7 @@ public class BoxLoops {
         this.computeLoops(prisonFlr.getBoxesList(), this.nextBoxIndex);
     }
 
+    
     public BoxLoops(PrisonFloor prisonFlr, int nextBoxIndex) {
         this.nextBoxIndex = nextBoxIndex;
         this.boxLoop = new SimpleGraph<>(DefaultEdge.class);
@@ -90,18 +91,16 @@ public class BoxLoops {
         // this.boxLoopsList is set when this finishes.
     }
 
-    public int largestLoop() {
-        // doing this array thing to resolve the lambda function error
-        // error: local variables referenced from a lambda expression must be final or effectively final
-        int[] largestLoop = {0};
+    public int getLargestLoop() {
+        int largestLoop = 0;
 
-        this.boxLoopsList.forEach(myBoxLoop -> {
+        for (SimpleGraph<Box, DefaultEdge> myBoxLoop : this.boxLoopsList) {
             Set<Box> vertices = myBoxLoop.vertexSet();
-            if(vertices.size() > largestLoop[0]) {
-                largestLoop[0] = vertices.size();
+            if(vertices.size() > largestLoop) {
+                largestLoop = vertices.size();
             }
-        });
-        return largestLoop[0];
+        } 
+        return largestLoop;
     }
 
     public List<SimpleGraph<Box, DefaultEdge>> getBoxLoops() {
@@ -112,13 +111,13 @@ public class BoxLoops {
     public String toString() {
         StringBuilder loopString = new StringBuilder();
 		String lineSeparator = System.lineSeparator();
-        final int[] increment = {1};
+        int increment = 1;
 
-        this.boxLoopsList.forEach(myBoxLoop -> {
-            Set<DefaultEdge> edges = myBoxLoop.edgeSet();
+        for(SimpleGraph<Box, DefaultEdge> myBoxLoop : this.boxLoopsList) {
             Set<Box> vertices = myBoxLoop.vertexSet();
+            Set<DefaultEdge> edges = myBoxLoop.edgeSet();
 
-            loopString.append("Loop: " + increment[0] + " | Size: " + vertices.size());
+            loopString.append("Loop: " + increment + " | Size: " + vertices.size());
             loopString.append(lineSeparator);
 
             if(!edges.isEmpty()) {
@@ -137,9 +136,8 @@ public class BoxLoops {
 
             loopString.append(lineSeparator);
             loopString.append(lineSeparator);
-            increment[0]++;
-        });
-
+            increment++;
+        }
         return loopString.toString();
     }
 }
